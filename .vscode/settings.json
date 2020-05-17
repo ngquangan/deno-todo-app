@@ -1,3 +1,14 @@
 {
-    "deno.enable": true
+    "deno.enable": true,
+    "sqltools.connections": [
+        {
+            "database": "deno-todo-app",
+            "dialect": "PostgreSQL",
+            "name": "Postgres Local",
+            "password": "test",
+            "port": 5432,
+            "server": "localhost",
+            "username": "postgres"
+        }
+    ]
 }

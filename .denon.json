@@ -5,8 +5,8 @@
   "fullscreen": true,
   "extensions": [".js", ".ts", ".py", ".json"],
   "interval": 500,
-  "watch": ["resources/"],
-  "deno_args": ["--allow-net"],
+  "watch": ["."],
+  "deno_args": ["--allow-net", "--allow-write", "--allow-read", "--allow-plugin", "--unstable"],
   "execute": {
     ".js": ["deno", "run"],
     ".ts": ["deno", "run"],
