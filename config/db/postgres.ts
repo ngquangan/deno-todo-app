@@ -8,6 +8,7 @@ const postgresDatabase = new Client({
   port: 5432,
 });
 
+// await postgresDatabase.connect();
 console.log('Connected postgres DB');
 
 export default postgresDatabase;

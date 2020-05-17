@@ -1,20 +1,29 @@
 import { Drash } from 'https://deno.land/x/drash/mod.ts';
 
-type RegisterDataTypes = {
-  email: string;
-  password: string;
+type DataTypes = {
+  username: string;
+  password?: string;
 };
 
-const registerUser = async (data: RegisterDataTypes) => {
+const registerUser = async (data: DataTypes) => {
   const postgresDatabase = Drash.Members.postgresDatabase;
-
   await postgresDatabase.connect();
   return postgresDatabase.query({
-    text: `INSERT INTO "public".user (email, password) VALUES ($1, $2);`,
-    args: [data.email, data.password],
+    text: `INSERT INTO account (username, password) VALUES ($1, $2);`,
+    args: [data.username, data.password],
+  });
+};
+
+const checkUserExisted = async (data: DataTypes) => {
+  const postgresDatabase = Drash.Members.postgresDatabase;
+  await postgresDatabase.connect();
+  return postgresDatabase.query({
+    text: `SELECT * FROM account;`,
+    // args: [data.username],
   });
 };
 
 export {
     registerUser,
+    checkUserExisted
 }
