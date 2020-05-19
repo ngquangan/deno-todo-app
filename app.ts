@@ -20,5 +20,7 @@ import postgresDatabase from "./config/db/postgres.ts";
 Drash.addMember("postgresDatabase", postgresDatabase);
 
 import HashPassword from "./utils/helpers/hashPassword.ts";
-
 Drash.addMember("HashPassword", new HashPassword());
+
+import GenerateJwt from "./utils/helpers/generateJwt.ts";
+Drash.addMember("GenerateJWT", new GenerateJwt());
