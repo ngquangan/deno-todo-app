@@ -6,7 +6,7 @@
   "extensions": [".js", ".ts", ".py", ".json"],
   "interval": 500,
   "watch": ["."],
-  "deno_args": ["--allow-net", "--allow-write", "--allow-read", "--allow-plugin", "--unstable"],
+  "deno_args": ["--allow-net", "--allow-write", "--allow-read", "--allow-plugin", "--unstable",  "-c=tsconfig.json"],
   "execute": {
     ".js": ["deno", "run"],
     ".ts": ["deno", "run"],
