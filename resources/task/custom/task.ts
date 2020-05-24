@@ -1,5 +1,5 @@
 import { Drash } from "https://deno.land/x/drash/mod.ts";
-import { getTaskList } from "../service/index.ts";
+import { getTaskList, createTask } from "../service/index.ts";
 
 export default class TaskCustomResource extends Drash.Http.Resource {
   static paths = ["/tasks"];
@@ -14,8 +14,8 @@ export default class TaskCustomResource extends Drash.Http.Resource {
           id,
           name,
           note,
-          status
-        }
+          status,
+        };
       });
       this.response.body = data;
       return this.response;
@@ -25,5 +25,21 @@ export default class TaskCustomResource extends Drash.Http.Resource {
     }
   }
 
-  public POST() {}
+  public async POST() {
+    const name = this.request.getBodyParam("name");
+    const note = this.request.getBodyParam("note");
+    try {
+      const taskCreated = await createTask({
+        name,
+        note,
+      });
+      if (!taskCreated.done) {
+        throw new Drash.Exceptions.HttpException(400, `Have not created yet!`);
+      }
+      this.response.body = "Success";
+      return this.response;
+    } catch (e) {
+      throw new Drash.Exceptions.HttpException(500, e.message);
+    }
+  }
 }
