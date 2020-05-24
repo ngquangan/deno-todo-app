@@ -1,12 +1,13 @@
 import { Drash } from "https://deno.land/x/drash/mod.ts";
 import AuthResource from './resources/auth/index.ts';
+import TaskResource from "./resources/task/index.ts";
 
 import ResponseOverrided from "./overrides/response.ts";
 Drash.Http.Response = ResponseOverrided;
 
 const server = new Drash.Http.Server({
   response_output: "application/json",
-  resources: [...AuthResource,],
+  resources: [...AuthResource, ...TaskResource],
 });
 
 await server.run({
