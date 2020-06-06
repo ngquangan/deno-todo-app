@@ -1,5 +1,4 @@
 # deno-todo-app
 
-* BE: Drash
-* FE: React
-* State management: Recoil
+* BE: Oak - Drash
+* FE: React - Recoil
